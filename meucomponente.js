@@ -1,29 +1,28 @@
-class MeuCirculo extends HTMLElement {
+class MeuComponente extends HTMLElement {
 
   constructor() {
     super()
 
     const shadow = this.attachShadow({mode:'open'})
 
-    const raiz = document.createElement('span')
-    raiz.setAttribute('class', 'raiz')
+    const root = document.createElement('div')
+    root.setAttribute('class', 'root')
 
     const texto = document.createElement('span')
     texto.setAttribute('class', 'texto')
     texto.textContent = this.getAttribute("texto")
 
-    raiz.appendChild(texto)
+    root.appendChild(texto)
 
     const style = document.createElement('style')
     style.textContent = `
-    .raiz {
+    .root {
+      width: 300px;
+      heigth: 200px;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 200px;
-      height: 200px;
-      border-radius: 100%;
-      background-color: ${this.getAttribute("cor") || "red"};
+      background-color: blue;
     }
 
     .texto {
@@ -32,8 +31,8 @@ class MeuCirculo extends HTMLElement {
     }
     `
     shadow.appendChild(style)
-    shadow.appendChild(raiz)
+    shadow.appendChild(root)
   }
 }
 
-customElements.define('meu-circulo', MeuCirculo)
+customElements.define('meu-componente', MeuComponente)
